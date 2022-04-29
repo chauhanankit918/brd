@@ -1,0 +1,71 @@
+{% extends 'Base/homebase.html' %} {% block body %}
+<style>
+  /**#id_doc_10,
+  #id_doc_12,
+  #id_doc_ug,
+  #id_doc_pg {
+      display: none;
+  }**/
+  /**label[for="id_doc_10"] { display: none }
+  label[for="id_doc_12"] { display: none }
+  label[for="id_doc_ug"] { display: none }
+  label[for="id_doc_pg"] { display: none }**/
+</style>
+
+<div class="container mt-3">
+  <div class="card shadow-lg">
+    <div class="card-header bg-info py-2">
+      <h3 class="text-center fw-bold text-light mb-0">Online-Admission</h3>
+    </div>
+    <div class="card-body">
+      <form
+        enctype="multipart/form-data"
+        method="post"
+        class="row"
+        action="{% url 'Admin:ADDstudent' %}"
+      >
+        {% csrf_token %}
+        <div class="row">
+          {% for fm in form %}
+
+          <div class="col-md-6 my-2">
+            <p>{{fm.label_tag}}</p>
+            {{ fm }} {{ fm.errors }}
+          </div>
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-dark mt-2">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <script>
+  let select = document.getElementById("id_Education");
+  let firstFile = document.getElementById("id_doc_10");
+  let secondFile = document.getElementById("id_doc_12");
+  let thirdFile = document.getElementById("id_doc_ug");
+  let fourthFile = document.getElementById("id_doc_pg");
+
+  select.addEventListener("change", function () {
+    if (select.value == "10th") {
+      firstFile.setAttribute('disabled',false)
+      secondFile.setAttribute('disabled',true)
+      thirdFile.setAttribute('disabled',true)
+      fourthFile.setAttribute('disabled',true)
+    } 
+    else if (select.value == "12th") {
+      firstFile.setAttribute('disabled',false)
+      secondFile.setAttribute('disabled',false)
+      thirdFile.setAttribute('disabled',true)
+      fourthFile.setAttribute('disabled',true)
+ 
+    } else if (select.value == "Grad") {
+
+    } else if (select.value == "P.Grad") {
+   
+    }
+  });
+</script> -->
+
+{% endblock %}
